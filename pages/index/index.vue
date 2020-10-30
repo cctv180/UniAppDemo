@@ -4,6 +4,7 @@
 		<view class="text-area">
 			<text class="title">{{title}}</text>
 		</view>
+        <button @click="open">执行云函数</button>
 	</view>
 </template>
 
@@ -15,18 +16,23 @@
 			}
 		},
 		onLoad() {
-            uniCloud.callFunction({
-                name:"login",
-                success(res) {
-                    console.log('uniCloud.callFunction:云函数调用成功',res)
-                },
-                fail(res) {
-                    console.log('uniCloud.callFunction:云函数调用失败',res)
-                }
-            })
 		},
 		methods: {
-
+            open(){
+                uniCloud.callFunction({
+                    name:"get_list",
+                    data:{
+                        name:"Liming",
+                        age:18
+                    },
+                    success(res) {
+                        console.log('uniCloud.callFunction:云函数调用成功',res)
+                    },
+                    fail(res) {
+                        console.log('uniCloud.callFunction:云函数调用失败',res)
+                    }
+                })
+            }
 		}
 	}
 </script>
