@@ -15,7 +15,15 @@
 			}
 		},
 		onLoad() {
-
+            uniCloud.callFunction({
+                name:"login",
+                success(res) {
+                    console.log('uniCloud.callFunction:云函数调用成功',res)
+                },
+                fail(res) {
+                    console.log('uniCloud.callFunction:云函数调用失败',res)
+                }
+            })
 		},
 		methods: {
 
