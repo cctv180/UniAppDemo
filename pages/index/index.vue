@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+		<image class="logo" :src="src"></image>
 		<view class="text-area">
 			<text class="title">{{title}}</text>
 		</view>
@@ -12,26 +12,51 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello',
+                src:''
 			}
 		},
 		onLoad() {
 		},
 		methods: {
             open(){
-                uniCloud.callFunction({
-                    name:"get_list",
-                    data:{
-                        name:"Liming",
-                        age:18
-                    },
+                let self =this
+                //文件上传
+                uni.chooseImage({
+                    count:1,
                     success(res) {
-                        console.log('uniCloud.callFunction:云函数调用成功',res)
+                        let tempFilePath = res.tempFilePaths[0]
+                        console.log('uni.chooseImage:云函数调用成功',res)
+                        uniCloud.uploadFile({
+                            filePath:tempFilePath,
+                            cloudPath:res.tempFiles[0].name,
+                            success(res) {
+                                console.log(res);
+                                self.src = res.fileID
+                            },
+                            fail() {
+                                console.log(err);
+                            }
+                        })
                     },
                     fail(res) {
-                        console.log('uniCloud.callFunction:云函数调用失败',res)
+                        console.log('uni.chooseImage:云函数调用失败',res)
                     }
                 })
+                
+                // 删除文件
+                // 阿里云不支持此API，前端运行此API会报权限错误
+                // 腾讯云支持此API，如若使用，需搭配腾讯云提供的自定义登录和权限设置使用
+                // uniCloud.deleteFile({
+                //     fileList:['https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-hncikqyt3onc0065bf/4ae43563-9bad-46b3-a684-5019732171ae.png'],
+                //     success(res){
+                //         console.log(res);
+                //     },
+                //     fail(){
+                //         console.log('err');
+                //     }
+                    
+                // })
             }
 		}
 	}
