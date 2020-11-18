@@ -15,37 +15,16 @@
 
 <script>
     export default {
+        props:{
+            list:{
+                type:Array,
+                default(){
+                    return[]
+                }
+            }
+        },
         data() {
             return {
-                list: [{
-                        name: 'uni-app'
-                    },
-                    {
-                        name: 'vue'
-                    },
-                    {
-                        name: 'react'
-                    },
-                    {
-                        name: 'java'
-                    },
-                    {
-                        name: '前端'
-                    },
-                    {
-                        name: '后端'
-                    },
-                    {
-                        name: '后端2'
-                    },
-                    {
-                        name: '后端3'
-                    },
-                    {
-                        name: '后端4'
-                    }
-                ]
-
             };
         }
     }
