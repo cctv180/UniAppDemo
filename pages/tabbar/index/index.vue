@@ -2,7 +2,7 @@
     <view class="content">
         <!-- 自定义组件 navbar导航栏 -->
         <navbar></navbar>
-        <tab :list="tabList"></tab>
+        <tab :list="tabList" @tab="tab"></tab>
         <!-- <view v-for="item in 100">
         {{item}}测试行
         </view> -->
@@ -26,6 +26,12 @@
             this.getLabel()
         },
         methods: {
+            tab({
+                data,
+                index
+            }) {
+                console.log(data, index)
+            },
             getLabel() {
                 //调用云函数方法
                 console.log(this.$api)
