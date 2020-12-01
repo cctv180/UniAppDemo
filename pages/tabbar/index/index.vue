@@ -28,13 +28,27 @@
         methods: {
             getLabel() {
                 //调用云函数方法
-                uniCloud.callFunction({
-                    name: 'get_label',
-                }).then((res) => {
-                    const {result} = res
-                    this.tabList = result.data
-                    console.log(this.tabList)
+                console.log(this.$api)
+                this.$api.get_list().then(res => {
+                    console.log(res)
                 })
+                this.$api.get_label({
+                    name: 'get_label'
+                }).then((res) => {
+                    const {
+                        data
+                    } = res
+                    this.tabList = data
+                    //console.log(res)
+                })
+
+                // uniCloud.callFunction({
+                //     name: 'get_label',
+                // }).then((res) => {
+                //     const {result} = res
+                //     this.tabList = result.data
+                //     console.log(this.tabList)
+                // })
             }
         }
     }

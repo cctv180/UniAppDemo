@@ -15,17 +15,16 @@
 
 <script>
     export default {
-        props:{
-            list:{
-                type:Array,
-                default(){
-                    return[]
+        props: {
+            list: {
+                type: Array,
+                default () {
+                    return []
                 }
             }
         },
         data() {
-            return {
-            };
+            return {};
         }
     }
 </script>
@@ -76,7 +75,7 @@
                     left: 0;
                     width: 1px;
                     background-color: #e5e5e5;
-                    border: 1px red solid;//画线框
+                    border: 1px red solid; //画线框
                 }
             }
         }
