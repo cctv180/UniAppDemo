@@ -1,11 +1,16 @@
 <template>
-    <view class="content">
+    <view class="home">
         <!-- 自定义组件 navbar导航栏 -->
         <navbar></navbar>
         <tab :list="tabList" @tab="tab"></tab>
-        <!-- <view v-for="item in 100">
-        {{item}}测试行
-        </view> -->
+
+        <view class="scroll">
+            <scroll-view class="list-scroll" scroll-y>
+                <view v-for="(item, index) in 100" :key="item.id">
+                    {{item}}测试行
+                </view>
+            </scroll-view>
+        </view>
     </view>
 </template>
 
@@ -61,5 +66,24 @@
 </script>
 
 <style lang="scss">
-
+    page {
+        height: 100%;
+        display: flex;
+    }
+    .home{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        border: 1px #0081FF solid;
+        .scroll{
+            flex: 1;
+            overflow: hidden;
+            box-sizing: border-box;
+            .list-scroll{
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
 </style>
