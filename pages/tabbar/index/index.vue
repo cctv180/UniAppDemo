@@ -4,13 +4,13 @@
         <navbar></navbar>
         <tab :list="tabList" @tab="tab"></tab>
 
-        <view class="scroll">
-            <scroll-view class="list-scroll" scroll-y>
-                <view v-for="(item, index) in 100" :key="item.id">
-                    {{item}}测试行
-                </view>
-            </scroll-view>
-        </view>
+        <list-scroll>
+            <!-- <view v-for="(item, index) in 100" :key="item.id">
+                {{item}}测试行
+            </view> -->
+            <list-card v-for="(item, index) in 5" :key="item.id"></list-card>
+        </list-scroll>
+
     </view>
 </template>
 
@@ -70,20 +70,12 @@
         height: 100%;
         display: flex;
     }
-    .home{
+
+    .home {
         display: flex;
         flex-direction: column;
         flex: 1;
         border: 1px #0081FF solid;
-        .scroll{
-            flex: 1;
-            overflow: hidden;
-            box-sizing: border-box;
-            .list-scroll{
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-            }
-        }
+        overflow: hidden;
     }
 </style>
